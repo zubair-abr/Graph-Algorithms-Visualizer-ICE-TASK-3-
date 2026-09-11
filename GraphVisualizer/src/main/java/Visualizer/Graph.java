@@ -317,6 +317,9 @@ public class Graph extends JPanel implements MouseListener {
                     this.repaint();
                     return;
                 }
+                else{
+                    JOptionPane.showMessageDialog(this, "Weight must be a whole number (e.g. 5, 0, -3)", "Invalid Weight", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
