@@ -6,9 +6,17 @@ import visualizer.Vertex;
 import java.util.*;
 
 public class PrimsAlgorithm implements GraphAlgorithm {
+    
+    //stores order vertices are traveled in during visualisation of algorithm
+    private List<Vertex> travelOrder = new ArrayList<>();
     @Override
     public String run(Map<Vertex, List<Edge>> graph, Vertex start) {
-
+        
+        //this resets the travel order everytime the algorithm is run again
+        travelOrder = new ArrayList<>();
+        //this highlights the starting vertex first
+        travelOrder.add(start);
+        
         // If the chosen vertex doesn't have any edges, then just return it
         if (graph.get(start).isEmpty()) {
             return start.getId();
@@ -32,11 +40,18 @@ public class PrimsAlgorithm implements GraphAlgorithm {
             // Add it to the edgesOfMST list and mark the target Vertex as processed
             edgesOfMST.add(lowestWeightEdge);
             verticesOfMST.add(lowestWeightEdge.getVertex2());
+            
+            //record that this vertex was added to the MST now in this order
+            travelOrder.add(lowestWeightEdge.getVertex2());
         }
 
         return processEdgesOfMST(edgesOfMST);
     }
 
+    @Override 
+    public List<Vertex> getTravelOrder(){
+        return travelOrder;
+    }
     private static Edge findLowestEdgeWeight(Map<Vertex, List<Edge>> graph, Set<Vertex> verticesOfMST) {
         Edge correctEdge = null;
         double smallestWeight = Double.POSITIVE_INFINITY;
