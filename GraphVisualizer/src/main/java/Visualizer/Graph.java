@@ -51,6 +51,11 @@ public class Graph extends JPanel implements MouseListener {
             Vertex vertex = clickedOnVertex(e.getX(), e.getY());
 
             if (vertex != null) {
+                //Block self-loops: prevent the user from selecting a vertex that has already been selected
+                if(!edgeVertices.isEmpty() && edgeVertices.get(0).equals(vertex)){
+                    JOptionPane.showMessageDialog(this, "You cannot connect a vertex to itself.", "Invalid Edge", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 edgeVertices.add(vertex);
                 if (edgeVertices.size() == 2) {
                     // Don't allow edge drawing if an edge between the two selected vertices already exists
@@ -58,6 +63,8 @@ public class Graph extends JPanel implements MouseListener {
                         String id1 = edgeVertices.get(0).getId();
                         String id2 = edgeVertices.get(1).getId();
                         if (verticesOfAnEdge.contains(id1) && verticesOfAnEdge.contains(id2)) {
+                            //prevent user from adding another edge to the same vertices
+                            JOptionPane.showMessageDialog(this, "An edge already exists between " + id1 + " and " + id2, "Invalid Edge", JOptionPane.ERROR_MESSAGE);
                             edgeVertices.clear();
                             return;
                         }
