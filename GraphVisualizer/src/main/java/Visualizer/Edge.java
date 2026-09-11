@@ -12,6 +12,7 @@ public class Edge extends JComponent implements Comparable<Edge> {
     private JLabel label;
     private boolean topEqualsLeft;
     protected static List<Edge> edges = new ArrayList<>();
+    
 
     public Edge(Vertex vertex1, Vertex vertex2, int weight) {
         this.setName("Edge <" + vertex1.getId() + " -> " + vertex2.getId() + ">");
@@ -48,7 +49,10 @@ public class Edge extends JComponent implements Comparable<Edge> {
         g.drawLine(0, topEqualsLeft ? 0 : this.getHeight(),
                 this.getWidth(), topEqualsLeft ? this.getHeight() : 0);
     }
-
+    public void setWeight(int weight){
+        this.weight = weight;
+        this.label.setText(String.valueOf(weight));
+    }
     private void setLabel() {
         this.label = new JLabel();
         this.label.setName("EdgeLabel <" + vertex1.getId() + " -> " + vertex2.getId() + ">");
