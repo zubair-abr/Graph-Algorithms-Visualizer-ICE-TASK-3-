@@ -6,6 +6,7 @@ import visualizer.Vertex;
 import java.util.*;
 
 public class DFSAlgorithm implements GraphAlgorithm {
+    //stores order vertices are traveled in during visualisation of algorithm
     private List<Vertex> travelOrder = new ArrayList<>();
     @Override
     public String run(Map<Vertex, List<Edge>> graph, Vertex start) {
