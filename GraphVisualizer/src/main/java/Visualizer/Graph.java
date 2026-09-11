@@ -43,6 +43,12 @@ public class Graph extends JPanel implements MouseListener {
                             createVertex(xValue, yValue, input);
                             return;
                         }
+                        else if (input.length() != 1){
+                            JOptionPane.showMessageDialog(this, "Vertex ID must be Exactly 1 Character.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Vertex ID '" + input + "' is already in use.", "Invalid Input.", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
             }
