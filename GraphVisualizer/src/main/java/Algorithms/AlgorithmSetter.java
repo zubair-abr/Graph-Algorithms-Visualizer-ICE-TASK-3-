@@ -16,4 +16,8 @@ public class AlgorithmSetter {
     public String execute(Map<Vertex, List<Edge>> graph, Vertex start) {
         return this.algorithm.run(graph, start);
     }
+    
+    public List<Vertex> getTravelOrder(){
+        return algorithm.getTravelOrder();
+    }
 }
