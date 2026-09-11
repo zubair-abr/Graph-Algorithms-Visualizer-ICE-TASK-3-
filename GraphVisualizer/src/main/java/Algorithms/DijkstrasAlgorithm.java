@@ -5,9 +5,16 @@ import visualizer.Vertex;
 import java.util.*;
 
 public class DijkstrasAlgorithm implements GraphAlgorithm {
+    //stores order vertices are traveled in during visualisation of algorithm
+    private List<Vertex> travelOrder = new ArrayList<>();
     @Override
     public String run(Map<Vertex, List<Edge>> graph, Vertex start) {
-
+        
+        //this resets the travel order everytime the algorithm is run again
+        travelOrder = new ArrayList<>();
+        //this highlights the starting vertex first
+        travelOrder.add(start);
+        
         // Initialize the map that will store the Vertex: Weight pairs
         Map<Vertex, Double> outputMap = new TreeMap<>();
 
@@ -43,10 +50,12 @@ public class DijkstrasAlgorithm implements GraphAlgorithm {
             // Add the current vertex with its weight to the outputMap and mark it as processed
             outputMap.put(current, distances.get(current));
             unprocessedVertices.remove(current);
-
+            
+            //add's additional order of vertices travelled after the starting vertex in order
+            travelOrder.add(current);
             // Find the edges of the current Vertex
             List<Edge> currentVertexEdges = graph.get(current);
-
+            
             // Update distances to unprocessed neighbors
             for (Edge edge: currentVertexEdges) {
                 Vertex neighbor = edge.getVertex2();
@@ -63,7 +72,12 @@ public class DijkstrasAlgorithm implements GraphAlgorithm {
         String shortestPaths = processDistances(outputMap);
         return shortestPaths.substring(0, shortestPaths.length() - 2);
     }
-
+    
+    @Override
+    public List<Vertex> getTravelOrder(){
+        return travelOrder;
+    }
+    
     private static Vertex findSmallestDistanceVertex(Set<Vertex> unprocessedVertices, Map<Vertex, Double> distances) {
         Vertex smallestVertex = null;
         double smallestDistance = Double.POSITIVE_INFINITY;
