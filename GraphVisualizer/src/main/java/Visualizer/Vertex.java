@@ -13,7 +13,9 @@ public class Vertex extends JPanel implements Comparable<Vertex> {
     private JLabel label;
     private int xLocation;
     private int yLocation;
-
+    
+    private Color currentColor = Vertex.VERTEX_COLOR;
+    
     public Vertex(int x, int y, String id) {
         this.id = id;
         this.xLocation = x;
@@ -45,8 +47,22 @@ public class Vertex extends JPanel implements Comparable<Vertex> {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Vertex.VERTEX_COLOR);
+        g.setColor(currentColor);
         g.fillOval(0, 0, Vertex.SIZE, Vertex.SIZE);
+    }
+    
+    //Changes vertex color to show its been travelled by a algorithm
+    public void highlight(Color c){
+        currentColor = c;
+        label.setForeground(Color.black);
+        repaint();
+    }
+    //sets vertex color back to normal so that it doesnt intefere with a different algorithm representation 
+    public void resetColor(){
+        currentColor = Vertex.VERTEX_COLOR;
+        label.setForeground(Vertex.VERTEX_COLOR);
+        repaint();
+        
     }
 
     private void setLabel() {
