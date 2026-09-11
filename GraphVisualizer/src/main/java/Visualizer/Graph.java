@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.util.*;
 
 import algorithms.*;
+import java.awt.Color;
 
 public class Graph extends JPanel implements MouseListener {
 
@@ -161,19 +162,40 @@ public class Graph extends JPanel implements MouseListener {
 
                 // Run the algorithm
                 String path = algorithmSetter.execute(graph, vertex);
-
+                //fetch list of order the alogirthm travelled the vertices so that it can be animated
+                List<Vertex> travelOrder = algorithmSetter.getTravelOrder();
+                
+                
+                List<Vertex> allVertices = new ArrayList<>(Vertex.vertices.values());
+                //reset color of any previously highlighted vertices
+                for (int i = 0; i < allVertices.size(); i++){
+                    Vertex v = allVertices.get(i);
+                    v.resetColor();
+                }
                 // Display the message that the Algorithm is running
                 MainFrame.getAlgorithmDisplayLabel().setText("Please wait...");
-
-                // Timer (with the interval of 1 sec)
-                Timer timer = new Timer(1000, new ActionListener() {
+                
+                // timer executes every 600 miliseconds. Each time it executes the next vertex in travelOrder will be highlighted so the user can
+                //visually see the algorithm travel each vertex instead of seeing a static awnser.
+                Timer timer = new Timer(600, new ActionListener() {
+                    private int count = 0;
                     @Override
                     public void actionPerformed(ActionEvent arg0) {
-                        // Change display label to <path>
-                        MainFrame.getAlgorithmDisplayLabel().setText(path);
+                        if(count < travelOrder.size()){
+                            Vertex currentVertex = travelOrder.get(count);
+                            currentVertex.highlight(Color.YELLOW);
+                            count++;
+                        }
+                        else{
+                            ((Timer) arg0.getSource()).stop();
+                            // Change display label to <path>
+                            MainFrame.getAlgorithmDisplayLabel().setText(path);
+                        }
+                        
+                        
+
                     }
                 });
-                timer.setRepeats(false);
                 timer.start();
 
             }
