@@ -23,7 +23,7 @@ This project was built and tested in **Apache NetBeans**, but since it's a stand
 ### In NetBeans
 1. **File → Open Project** → select the project folder.
 2. Right-click the project in the Projects panel → **Run**.
-   - *Note: use "Run Project", not "Run File" on an individual class — "Run File" bypasses the project's configured main class as this is something i struggled with.*
+   - *Note: use "Run Project", not "Run File" on an individual class because "Run File" bypasses the project's configured main class as this is something i struggled with.*
 
 ### Requirements
 - JDK 21 or later
@@ -86,19 +86,50 @@ Originally, an edge's weight was fixed once created — the only way to change i
 
 ## Visuals
 
-![Graph before any vertices and edges](<img width="781" height="591" alt="image" src="https://github.com/user-attachments/assets/e4a62010-7e81-4f7b-bc5c-b749c8e15fc2" />
-)
-![Graph before running an algorithm](screenshots/graph-built.png)
-![Algorithm mid-animation](screenshots/algorithm-animating.png)
-![Final BFS result](screenshots/bfs-result.png)
-![Editing an edge weight](screenshots/edit-edge.png)
-![Validation error message](screenshots/error-message.png)
+Graph before any vertices and edges: 
+
+<img width="781" height="591" alt="Screenshot 2026-09-11 215845" src="https://github.com/user-attachments/assets/ddb04f42-b605-42ad-9369-7b06444f0fb7" />
+
+Graph after adding four (4) vertices: 
+
+<img width="780" height="584" alt="image" src="https://github.com/user-attachments/assets/6a4f25e3-a480-4ed1-898a-149347ddc07c" />
+
+Graph after adding edges to vertices: 
+
+<img width="781" height="586" alt="image" src="https://github.com/user-attachments/assets/58c08a64-57a6-4720-a7c1-c99b9c9509a8" />
+
+Graph during application of algorithm, visualising through highlighting: 
+
+<img width="781" height="590" alt="image" src="https://github.com/user-attachments/assets/6190950b-395c-4f08-a428-cbd9e5e447b2" />
+
+<img width="782" height="588" alt="image" src="https://github.com/user-attachments/assets/275fe0c1-76d5-4a7b-ab3d-8e4ddf94ee84" />
+
+
+Graph after algorithm applied: 
+
+<img width="781" height="587" alt="image" src="https://github.com/user-attachments/assets/369cf1bc-d6b3-46f6-b43a-32761393cfa7" />
+
+
+Editing an edge: 
+
+<img width="778" height="587" alt="image" src="https://github.com/user-attachments/assets/269b41fa-296c-4d45-a4fd-22f1cae632ad" />
+
+<img width="782" height="245" alt="image" src="https://github.com/user-attachments/assets/a9da42cd-d96f-4642-a910-b5fc358741e4" />
+
+
+Error messages and prevention: 
+
+<img width="779" height="588" alt="image" src="https://github.com/user-attachments/assets/b436b210-9229-4036-ab3b-f340d009b806" />
+
+<img width="780" height="584" alt="image" src="https://github.com/user-attachments/assets/ef9bc5c4-1ba0-4633-b552-d83357d2b397" />
+
+<img width="777" height="585" alt="image" src="https://github.com/user-attachments/assets/18ac0cf4-c48b-47d2-87c8-292dd866e65b" />
+
 
 ## Why This Is a Strong Portfolio Piece
 
-<!-- This section is your own reflection — write it in your own words. Some prompts to get you started: -->
+I believe this is a strong portfolio piece because it was not just tutorial-based programming where I could use a textbook to cover most of the problems. This pushed my thinking and adaptation skills. This shows how I can read code that I was unfamiliar by, understand how it functions enough to where I could extend upon it, and make design changes. An example of this would be where I added the functionality to edit a weight of an edge between two vertices and realized that both directional copies of that edge otherwise the algorithms would give incorrect results. Catching this issue came to me like instinct instead of trial and error which made me realize that I could understand the code and not just copying and pasting lines of code that is hardwired in my head after studying. This assignment allowed for me to utilize critical thinking and think beyond just what's in front of me but how what I code in one class can affect other classes and how that can produce errors and bugs before it's able to be executed. 
 
-- What did building this teach you about GUI event handling that's different from, say, a console program?
-- What was the trickiest bug you ran into, and how did you find/fix it? (e.g. tracing through the Dijkstra's/BFS logic to confirm the visit order was correct)
-- Why does this project demonstrate skills relevant to the kind of work you want to do?
-- What would you build next if you kept working on it (e.g. save/load, drag-and-drop repositioning, a new algorithm)?
+The most challenging thing I approached was adding the algorithm visualization feature. The logic behind running the algorithms were already there, however figuring out how to make the GUI present what the algorithm was doing without causing any bugs or errors especially with the algorithms themselves was difficult. I had to read through each algorithm file (java class files) to understand the algorithm itself and see where I could implement a variable that can catch the vertices in the order in which the algorithm does. 
+
+
