@@ -7,11 +7,14 @@ import java.util.*;
 
 public class BFSAlgorithm implements GraphAlgorithm {
 
+    private List<Vertex> travelOrder = new ArrayList<>();
     @Override
     public String run(Map<Vertex, List<Edge>> graph, Vertex start) {
         // Initialize the string that will contain the traversal
         String traversalPath = "BFS : ";
-
+        
+        //this resets the travel order everytime the algorithm is run again
+        travelOrder = new ArrayList<>();
         // Initialize a set to keep track of visited Vertices
         Set<Vertex> visited = new HashSet<>();
 
@@ -26,7 +29,9 @@ public class BFSAlgorithm implements GraphAlgorithm {
         while (!queue.isEmpty()) {
             // Dequeue a Vertex from the queue
             Vertex current = queue.poll();
-
+            
+            //this adds that this vertex was traveled now and in this specific order
+            travelOrder.add(current);
             // Process the current Vertex
             traversalPath += processVertex(current);
 
@@ -48,6 +53,11 @@ public class BFSAlgorithm implements GraphAlgorithm {
         }
 
         return traversalPath.substring(0, traversalPath.length() - 4);
+    }
+    
+    @Override
+    public List<Vertex> getTravelOrder(){
+        return travelOrder;
     }
 
 }
