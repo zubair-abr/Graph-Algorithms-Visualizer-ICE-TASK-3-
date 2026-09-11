@@ -10,4 +10,7 @@ public interface GraphAlgorithm {
     default String processVertex(Vertex vertex) {
         return vertex.getId() + " -> ";
     }
+    
+    List<Vertex> getTravelOrder();
+    //returns the order of which the algorithm travels along the vertices 
 }
