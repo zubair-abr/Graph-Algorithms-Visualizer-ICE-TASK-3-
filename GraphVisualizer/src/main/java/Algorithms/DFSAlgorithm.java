@@ -6,7 +6,7 @@ import visualizer.Vertex;
 import java.util.*;
 
 public class DFSAlgorithm implements GraphAlgorithm {
-
+    private List<Vertex> travelOrder = new ArrayList<>();
     @Override
     public String run(Map<Vertex, List<Edge>> graph, Vertex start) {
 
@@ -17,7 +17,10 @@ public class DFSAlgorithm implements GraphAlgorithm {
 
         // Initialize the string that will contain the traversal
         String traversalPath = "DFS : ";
-
+        
+        //this resets the travel order everytime the algorithm is run again
+        travelOrder = new ArrayList<>();
+        
         // Initialize a set to keep track of visited Vertices
         Set<Vertex> visited = new HashSet<>();
 
@@ -43,7 +46,10 @@ public class DFSAlgorithm implements GraphAlgorithm {
 
         // Process the current Vertex
         output += processVertex(vertex);
-
+        
+        //this adds that this vertex was traveled now and in this specific order
+        travelOrder.add(vertex);
+        
         // Find the Edges of the current Vertex
         List<Edge> currentVertexEdges = graph.get(vertex);
 
@@ -59,6 +65,11 @@ public class DFSAlgorithm implements GraphAlgorithm {
         }
 
         return output;
+    }
+    
+    @Override
+    public List<Vertex> getTravelOrder(){
+        return travelOrder;
     }
 }
 
