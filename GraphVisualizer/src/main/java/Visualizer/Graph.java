@@ -142,7 +142,7 @@ public class Graph extends JPanel implements MouseListener {
                        break;
                    }
                    else {
-                       if (input.matches("(-?[1-9]\\d*|0)")){
+                       if (input.matches("(-?[1-9]\\d*|0)")){ //reggex to see if value is a whole number
                            int newWeight = Integer.valueOf(input);
                            for (int i = 0; i < Edge.edges.size(); i++){
                                Edge otherEdge = Edge.edges.get(i);
