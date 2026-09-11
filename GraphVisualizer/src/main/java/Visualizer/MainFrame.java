@@ -71,11 +71,14 @@ public class MainFrame extends JFrame {
         removeAVertex.setName("Remove a Vertex");
         JMenuItem removeAnEdge = new JMenuItem("Remove an Edge");
         removeAnEdge.setName("Remove an Edge");
+        JMenuItem editAnEdge = new JMenuItem("Edit an Edge");
+        editAnEdge.setName("Edit an Edge");
 
         modeMenu.add(addAVertex);
         modeMenu.add(addAnEdge);
         modeMenu.add(removeAVertex);
         modeMenu.add(removeAnEdge);
+        modeMenu.add(editAnEdge);
         modeMenu.add(none);
 
         // Creating the two menu items for "File"
@@ -148,6 +151,17 @@ public class MainFrame extends JFrame {
         removeAnEdge.addActionListener(e -> {
             // Change the mode
             mode = Mode.REMOVE_AN_EDGE;
+            // Change text for label
+            changeTextForModeLabel("Current Mode -> " + mode.getDescription());
+            // Remove response to previous vertex clicks
+            Graph.edgeVertices.clear();
+            // Switch algorithmDisplayLabel visibility to false and text
+            algorithmDisplayLabel.setVisible(false);
+            algorithmDisplayLabel.setText("Please choose a starting vertex");
+        });
+        editAnEdge.addActionListener(e -> {
+            // Change the mode
+            mode = Mode.EDIT_AN_EDGE;
             // Change text for label
             changeTextForModeLabel("Current Mode -> " + mode.getDescription());
             // Remove response to previous vertex clicks

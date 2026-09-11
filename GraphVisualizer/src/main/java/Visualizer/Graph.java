@@ -132,7 +132,35 @@ public class Graph extends JPanel implements MouseListener {
                 this.repaint();
 
             }
-        } else if (MainFrame.mode == Mode.REMOVE_AN_EDGE) {
+        } else if (MainFrame.mode == Mode.EDIT_AN_EDGE){
+           Edge edge = clickedOnEdge(e.getX(), e.getY());
+           
+           if(edge != null){
+               while(true){
+                   String input = JOptionPane.showInputDialog(this, "Enter New Weight: ", "Edit Edge", JOptionPane.QUESTION_MESSAGE);
+                   if(input == null){
+                       break;
+                   }
+                   else {
+                       if (input.matches("(-?[1-9]\\d*|0)")){
+                           int newWeight = Integer.valueOf(input);
+                           for (int i = 0; i < Edge.edges.size(); i++){
+                               Edge otherEdge = Edge.edges.get(i);
+                               if(edge.equals(otherEdge)){
+                                   otherEdge.setWeight(newWeight);
+                               }
+                           }
+                           this.repaint();
+                           return;
+                       }
+                       else{
+                           JOptionPane.showMessageDialog(this, "Weight must be a whole number (e.g. -2, 0, 5)", "Invalid Weight", JOptionPane.ERROR_MESSAGE);
+                       }
+                   }
+               }
+           }
+            
+        }else if (MainFrame.mode == Mode.REMOVE_AN_EDGE) {
                 Edge edge = clickedOnEdge(e.getX(), e.getY());
 
                 if (edge != null) {
